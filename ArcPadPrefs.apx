@@ -1,0 +1,56 @@
+<ArcPad>
+	<PREFERENCES>
+		<SCRIPTING language="VBScript"/>
+		<PATHS system="\Program Files\ArcPad\System" data="\Flash Disk" applets="" styles="" extensions=""/>
+		<FONTS>
+			<LABEL font="Tahoma" fontsize="9" charset="ANSI" fontstyle="regular"/>
+		</FONTS>
+		<MAPGRID>
+			<SIMPLELINESYMBOL width="1"/>
+			<TEXTSYMBOL fontcolor="Black" font="Tahoma" fontstyle="regular" fontsize="9"/>
+		</MAPGRID>
+		<GPS protocol="NMEA" datum="D_WGS_1984" initialize="" logfile="\My Documents\GPS.log" northreference="true">
+			<COMPORT port="1" baud="115200" dtrcontrol="enable" rtscontrol="enable"/>
+			<HEIGHT units="9001" geoidseparation="0" antennaheight="0"/>
+			<QUALITYCONTROL level="0">
+				<PDOP/>
+				<EPE/>
+				<MODE/>
+			</QUALITYCONTROL>
+			<AVERAGING point="10" vertex="5"/>
+			<STREAMING interval="1" distanceinterval="10"/>
+		</GPS>
+		<LOCATION/>
+		<ALERTS>
+			<ALERT name="nogpsdata" show="false" play="false" sound=""/>
+			<ALERT name="maxpdop" show="false" play="false" sound=""/>
+			<ALERT name="maxepe" show="false" play="false" sound=""/>
+			<ALERT name="nofix" show="false" play="false" sound=""/>
+			<ALERT name="notdgps" show="false" play="false" sound=""/>
+			<ALERT name="not3d" show="false" play="false" sound=""/>
+			<ALERT name="approachingdestination" show="false" play="false" sound=""/>
+			<ALERT name="dataratewarning" sound=""/>
+		</ALERTS>
+		<AUX>
+			<COMPORT port="1" baud="115200" dtrcontrol="enable" rtscontrol="enable"/>
+		</AUX>
+		<RANGEFINDER protocol="" observerreference="foresight" autoactivate="false" capturebutton="any">
+			<COMPORT port="1" baud="4800" dtrcontrol="enable" rtscontrol="enable"/>
+		</RANGEFINDER>
+		<CAMERA device="" quality="75" path="\My Documents\My Pictures" prefix="Photo" shortcut=""/>
+		<TRACKLOG name="\My Documents\TrackLog.shp"/>
+		<LOCALE lcid="00000415"/>
+		<DISPLAY>
+			<SYSTEMTRAY/>
+		</DISPLAY>
+		<STATUSBAR/>
+		<IMS/>
+		<LAYERS autopack="true"/>
+		<GREEKING>
+			<POINT greeking="true" color="Gray" threshold1="0" threshold2="0" threshold3="0" threshold4="0"/>
+			<POLYLINE greeking="true" color="Gray" threshold1="2" threshold2="5" threshold3="9" threshold4="0"/>
+			<POLYGON greeking="true" color="Gray" threshold1="1" threshold2="2" threshold3="5" threshold4="9"/>
+			<MULTIPOINT greeking="true" color="Gray" threshold1="3" threshold2="8" threshold3="0" threshold4="0"/>
+		</GREEKING>
+	</PREFERENCES>
+</ArcPad>

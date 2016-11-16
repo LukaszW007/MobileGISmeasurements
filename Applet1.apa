@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ArcPad>
+	<APPLET name="nakladka">
+		<FORMS>
+			<FORM name="form1" caption="Nowy" width="130" height="130" onload="Call InitForm" onunload="Call CleanUp" onok="Call cmdNazwaProducentaOK">
+				<PAGE name="page1" caption="plik">
+					<LABEL name="Label1" x="1" y="1" width="50" height="16" caption="ID producenta rolnego" tooltip="" group="true" border="false"/>
+					<EDIT name="Edit1" x="55" y="2" width="73" height="12" defaultvalue="" tooltip="" tabstop="true" border="true" sip="false"/>
+					<EDIT name="Edit2" x="1" y="41" width="111" height="12" defaultvalue="Application.System.Properties(&quot;PersonalFolder&quot;)" tooltip="" tabstop="true" border="true" readonly="true" sip="false"/>
+					<LABEL name="Label2" x="1" y="30" width="34" height="10" caption="Ścieżka:" tooltip="" group="true" border="false"/>
+					<BUTTON name="Button1" x="113" y="40" width="14" height="14" onclick="Call ShowDirectoryBrowser" caption="..." tooltip="" tabstop="true" border="false" alignment="center"/>
+					<LABEL name="Label3" x="2" y="63" width="103" height="10" caption="Wczytaj podkład ewidencyjny:" tooltip="" group="true" border="false"/>
+					<EDIT name="Edit3" x="1" y="74" width="111" height="12" defaultvalue="" tooltip="" tabstop="true" border="true" readonly="true" sip="false"/>
+					<BUTTON name="Button2" x="113" y="73" width="14" height="14" onclick="Call LoadSelectedShapefile" caption="..." tooltip="" tabstop="true" border="false" alignment="center"/>
+				</PAGE>
+				<PAGE name="PAGE2" caption="info" sip="false">
+					<LABEL name="Label1" x="3" y="2" width="119" height="10" caption="Imię i nazwisko producenta rolnego:" tooltip="" group="true" border="false"/>
+					<EDIT name="Edit1" x="4" y="12" width="120" height="12" defaultvalue="" tooltip="" tabstop="true" border="true" sip="false"/>
+					<LABEL name="Label2" x="3" y="28" width="91" height="10" caption="Imię i nazwisko inspektora:" tooltip="" group="true" border="false"/>
+					<EDIT name="Edit2" x="3" y="39" width="121" height="12" defaultvalue="" tooltip="" tabstop="true" border="true" sip="false"/>
+					<DATETIME name="Date1" x="4" y="68" width="80" height="14" defaultvalue="" tooltip="" tabstop="true" border="true" sip="false"/>
+					<LABEL name="Label3" x="3" y="57" width="50" height="10" caption="Data kontroli:" tooltip="" group="true" border="false"/>
+				</PAGE>
+			</FORM>
+			<FORM name="Form2" caption="Konfiguracja" width="130" height="130" onok="Call cmdParPomiaru" onload="Call InitForm2" onunload="Call CleanUp2" tabsvisible="false">
+				<PAGE name="Page1" caption="Pomiar" sip="false">
+					<LABEL name="Label1" x="2" y="1" width="50" height="10" caption="Tryb pomiaru:" tooltip="" group="true" border="false"/>
+					<COMBOBOX name="Combo1" x="3" y="12" width="80" height="13" defaultvalue="1" listtable="" listvaluefield="" listtextfield="" tooltip="" tabstop="true" border="false" sip="false">
+						<LISTITEM value="2" text="Pojedynczy"/>
+						<LISTITEM value="1" text="Ciągły"/>
+					</COMBOBOX>
+					<LABEL name="Label2" x="3" y="31" width="109" height="10" caption="Rodzaj rejestrowanego obiektu:" tooltip="" group="true" border="false"/>
+					<COMBOBOX name="Combo2" x="2" y="43" width="80" height="100" defaultvalue="Punkt" listtable="" listvaluefield="" listtextfield="" tooltip="" tabstop="true" border="false" sip="false">
+						<LISTITEM value="Punkt" text="Punkt"/>
+						<LISTITEM value="Linia" text="Linia"/>
+						<LISTITEM value="Powierzchnia" text="Powierzchnia"/>
+					</COMBOBOX>
+					<LABEL name="Label3" x="3" y="64" width="90" height="10" caption="Interwał pomiaru ciągłego:" tooltip="" group="true" border="false"/>
+					<COMBOBOX name="Combo3" x="2" y="76" width="80" height="100" defaultvalue="" listtable="" listvaluefield="" listtextfield="" tooltip="" tabstop="true" border="false" sip="false" sort="false">
+						<LISTITEM value="1" text="1"/>
+						<LISTITEM value="2" text="2"/>
+						<LISTITEM value="5" text="5"/>
+						<LISTITEM value="10" text="10"/>
+						<LISTITEM value="15" text="15"/>
+						<LISTITEM value="30" text="30"/>
+						<LISTITEM value="60" text="60"/>
+					</COMBOBOX>
+				</PAGE>
+			</FORM>
+		</FORMS>
+		<TOOLBARS>
+			<TOOLBAR name="TOOLBAR1" caption="IACS" visible="true" image="$maproll">
+				<TOOLBUTTON name="Nowy producent rolny" shortcut="" image="open neww.bmp" onclick="Applet.Forms(&quot;form1&quot;).Show" tooltip="Tworzenie nowego pliku lub otwieranie istniejącego"/>
+				<TOOLBUTTON onclick="Call UnLoadSelectedShapefile" name="Zamknij cały pomiar" shortcut="" image="@exit" tooltip="Zamyka pomiar aktualnego producenta rolnego">
+					<SEPARATOR/>
+				</TOOLBUTTON>
+				<TOOLBUTTON command="modeselect">
+					<SEPARATOR name="" shortcut="" image="" caption=""/>
+				</TOOLBUTTON>
+				<TOOLBUTTON onclick="Call cmdPomiar" name="Rozpoczyna pomiar" shortcut="" image="rec.bmp">
+					<SEPARATOR/>
+				</TOOLBUTTON>
+				<TOOLBUTTON name="Pauza" shortcut="" image="pauza.bmp" onclick="Call KoniecPomiaruKonturu" tooltip="Wstrzymanie pomiaru"/>
+				<TOOLBUTTON onclick="Call cmdPomiarStop" name="stop" shortcut="" image="Stop.bmp" tooltip="Zakończenie pomiaru"/>
+				<TOOLBUTTON name="Konfiguracja" shortcut="" image="@featureproperties" onclick="Applet.Forms(&quot;Form2&quot;).Show" tooltip="Konfiguracja"/>
+				<TOOLBUTTON onclick="Call cmdPoleObwod" name="Info" shortcut="" image="$dividers" tooltip="Pole i obwód"/>
+				<TOOLBUTTON name="autor" shortcut="" image="" onclick="Call autor" tooltip="O autorze"/>
+			</TOOLBAR>
+		</TOOLBARS>
+		<SYSTEMOBJECTS>
+			<MAP onnew="Call NowaMapa"/>
+			<GPS onposition="GPS_NowaPozycja"/>
+			<APPLICATION ontimer="Call OnTimer" onstartup="Call Inicjacja"/>
+		</SYSTEMOBJECTS>
+	</APPLET>
+	<SCRIPT src="Applet1.vbs" language="vbscript"/>
+</ArcPad>

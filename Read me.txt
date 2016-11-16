@@ -1,0 +1,2 @@
+1.plik arcPadPrefs - nale¿y skopiowaæ do katalogu \Moje Dokumenty 
+2.folder Applets - nale¿y skopiowaæ do katalogu g³ównego, gdzie jest zainstalowany program
